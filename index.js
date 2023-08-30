@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 const { Pool } = require('pg'); // Import the Pool class from pg
 const home  = require("./Routes/userRoute")
+const hello  = require("./Routes/hello")
 const app = express();
 const port = 5000;
 const serverless = require('serverless-http');
@@ -31,6 +32,7 @@ app.use(bodyParser.json());
 //   }
 // });
 app.use("/api/submit-form", home);
+app.use("/api/hello", hello);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
