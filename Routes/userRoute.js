@@ -23,5 +23,8 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: 'An error occurred' });
   }
 });
+router.get('/api/hello', (req, res) => {
+    res.json({ message: 'Hello from the backend!' });
+  });
 
 module.exports = router;
