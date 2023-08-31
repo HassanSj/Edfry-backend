@@ -74,12 +74,14 @@ import dotenv from 'dotenv';
 import connection from './src/utils/connection';
 import immigrationRoutes from './src/routes/immigrationRoutes';
 import userRouter from './src/routes/routes';
-
+var cors = require ('cors')
+const bodyParser = require ('body-parser')
 const router: Express = express();
 
 dotenv.config();
 
-
+router.use(cors())
+router.use(bodyParser())
 router.use(express.urlencoded({extended: false}));
 router.use(express.json());
 router.use('/' , userRouter)
@@ -104,7 +106,7 @@ router.use((req, res, next) => {
 });
 
 
-const PORT: any = process.env.PORT ?? 3000;
+const PORT: any = process.env.PORT ?? 5000;
 connection.then((data) => {
     router.listen(PORT, () => {
         console.log(`The server is running on port ${PORT}`)
