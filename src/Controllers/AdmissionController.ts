@@ -1,28 +1,35 @@
 import { Request, Response } from "express";
-import Immigration from "../models/Immigration";
 import { getRepository } from "typeorm";
 import RequestResponseMappings from "../utils/RequestResponseMappings";
+import Admission from "../models/Admission";
 
 export default {
   addBook: async (req: Request, res: Response) => {
     try {
-      const {age, contact, cost, experience, ieltsScore, ieltsTaken,name, qualification,
+      const {name ,
+        contact,
+        qualification,
+        level,
+        time,
+        country,
+        budget,
+        interest
       } = req.body;
-      const userRepository = getRepository(Immigration);
-      const newUser = new Immigration();
-      newUser.age = age;
+      const userRepository = getRepository(Admission);
+      const newUser = new Admission();
       newUser.name = name;
       newUser.contact = contact;
-      newUser.cost = cost;
-      newUser.experience = experience;
-      newUser.ieltsScore = ieltsScore;
-      newUser.ieltsTaken = ieltsTaken;
       newUser.qualification = qualification;
+      newUser.level = level;
+      newUser.time = time;
+      newUser.country = country;
+      newUser.budget = budget;
+      newUser.interest = interest;
       const savedUser = await userRepository.save(newUser);
       //   return RequestResponseMappings.sendSuccessMessage(res);
       return res
         .status(201)
-        .json({ message: "User response saved", user: savedUser });
+        .json({ message: "User admission saved", user: savedUser });
     } catch (error) {
       console.error("Error getting response:", error);
       return RequestResponseMappings.sendErrorMessage(res);
