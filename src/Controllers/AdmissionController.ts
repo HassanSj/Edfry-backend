@@ -4,7 +4,7 @@ import RequestResponseMappings from "../utils/RequestResponseMappings";
 import Admission from "../models/Admission";
 
 export default {
-  addBook: async (req: Request, res: Response) => {
+  addAdmission: async (req: Request, res: Response) => {
     try {
       const {name ,
         contact,
@@ -34,6 +34,25 @@ export default {
       console.error("Error getting response:", error);
       return RequestResponseMappings.sendErrorMessage(res);
       //   return res.status(500).json({ message: 'Internal server error' });
+    }
+  },
+  getData: async (req: Request, res: Response) => {
+    try {
+      const admissions = await getRepository(Admission).find();
+      res.json(admissions);
+      console.log("DATA", admissions);
+    } catch (e: any) {
+      return RequestResponseMappings.sendErrorMessage(res, e.message);
+    }
+  },
+  getAdmissionbyID: async (req: Request, res: Response) => {
+    try {
+      const results = await getRepository(Admission).findOneBy({
+        id: parseInt(req.params.id),
+      });
+      return res.send(results);
+    } catch (e: any) {
+      return RequestResponseMappings.sendErrorMessage(res, e.message);
     }
   },
 };

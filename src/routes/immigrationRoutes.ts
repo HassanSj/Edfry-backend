@@ -6,7 +6,8 @@ const immigrationRoutes: Express = express();
 
 // immigrationRoutes.get('/get', ImmigrationController.getrecord)
 // immigrationRoutes.get('/:id?', ImmigrationController.getrecord)
-immigrationRoutes.post('/', ImmigrationController.addBook)
-
+immigrationRoutes.post('/', ImmigrationController.addForm)
+immigrationRoutes.get('/get', ImmigrationController.getRecord)
+immigrationRoutes.get('/:id?', ImmigrationController.getRecordbyID)
 
 export default immigrationRoutes;
