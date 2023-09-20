@@ -3,32 +3,40 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 class Immigration extends BaseEntity {
-  
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  firstName: string;
 
   @Column()
-  age: string;
+  lastName: string;
 
   @Column()
   contact: string;
 
   @Column()
-  cost: string;
+  age: string;
 
   @Column()
-  experience : string;
-  
-  @Column()
-  ieltsScore: string;
+  martialStatus: string;
 
   @Column()
-  ieltsTaken: string;
+  familyUnitSize: string;
 
   @Column()
-  qualification: string;
-  }
+  funds: string;
+
+  @Column()
+  education: string;
+
+  @Column()
+  experience: string;
+
+  @Column()
+  relatives: string;
+
+  @Column()
+  financialCapacity: string;
+}
 export default Immigration;
