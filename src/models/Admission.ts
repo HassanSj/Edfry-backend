@@ -20,6 +20,8 @@ class Admission extends BaseEntity {
 
   @Column()
   time: string;
+  @Column({nullable:true})
+  newTime: string;
 
   @Column()
   country: string;

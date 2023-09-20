@@ -8,26 +8,33 @@ export default {
   addForm: async (req: Request, res: Response) => {
     try {
       const {
-        age,
+        firstName,
+        lastName,
         contact,
-        cost,
+        age,
+        martialStatus,
+        familyUnitSize,
+        funds,
+        education,
         experience,
-        ieltsScore,
-        ieltsTaken,
-        name,
-        qualification,
+        relatives,
+        financialCapacity,
       } = req.body;
 
       const userRepository = getRepository(Immigration);
       const newUser = new Immigration();
-      newUser.age = age;
-      newUser.name = name;
+
+      newUser.firstName = firstName;
+      newUser.lastName = lastName;
       newUser.contact = contact;
-      newUser.cost = cost;
+      newUser.age = age;
+      newUser.martialStatus = martialStatus;
+      newUser.familyUnitSize = familyUnitSize;
+      newUser.funds = funds;
+      newUser.education = education;
       newUser.experience = experience;
-      newUser.ieltsScore = ieltsScore;
-      newUser.ieltsTaken = ieltsTaken;
-      newUser.qualification = qualification;
+      newUser.relatives = relatives;
+      newUser.financialCapacity = financialCapacity;
       const savedUser = await userRepository.save(newUser);
       //   return RequestResponseMappings.sendSuccessMessage(res);
       return res
@@ -39,6 +46,7 @@ export default {
       //   return res.status(500).json({ message: 'Internal server error' });
     }
   },
+
   getRecord: async (req: Request, res: Response) => {
     try {
       const users = await getRepository(Immigration).find();
