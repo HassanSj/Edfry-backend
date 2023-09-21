@@ -6,25 +6,26 @@ import Admission from "../models/Admission";
 export default {
   addAdmission: async (req: Request, res: Response) => {
     try {
-      const {name ,
+      const {
+        name,
         contact,
         qualification,
-        level,
-        time,
-        country,
+        interestedEducation,
         budget,
-        interest
+        timeSlot,
+        country,
+        program,
       } = req.body;
       const userRepository = getRepository(Admission);
       const newUser = new Admission();
       newUser.name = name;
       newUser.contact = contact;
       newUser.qualification = qualification;
-      newUser.level = level;
-      newUser.time = time;
-      newUser.country = country;
+      newUser.interestedEducation = interestedEducation;
       newUser.budget = budget;
-      newUser.interest = interest;
+      newUser.timeSlot = timeSlot;
+      newUser.country = country;
+      newUser.program = program;
       const savedUser = await userRepository.save(newUser);
       //   return RequestResponseMappings.sendSuccessMessage(res);
       return res

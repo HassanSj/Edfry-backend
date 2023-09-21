@@ -16,20 +16,18 @@ class Admission extends BaseEntity {
   qualification: string;
 
   @Column()
-  level: string;
-
-  @Column()
-  time: string;
-  @Column({nullable:true})
-  newTime: string;
-
-  @Column()
-  country: string;
+  interestedEducation: string;
 
   @Column()
   budget: string;
 
   @Column()
-  interest: string;
+  timeSlot: string;
+
+  @Column()
+  country: string;
+
+  @Column()
+  program: string;
 }
 export default Admission;
