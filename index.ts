@@ -15,7 +15,6 @@
 
 // async function startServer() {
 
-
 //   try {
 //     await createConnection({
 //       type: 'postgres',
@@ -65,22 +64,36 @@
 // // });
 // startServer()
 
-import express, {Express} from 'express';
-import dotenv from 'dotenv';
-import connection from './src/utils/connection';
-import immigrationRoutes from './src/routes/immigrationRoutes';
-import userRouter from './src/routes/routes';
-var cors = require ('cors')
-const bodyParser = require ('body-parser')
+import express, { Express } from "express";
+import dotenv from "dotenv";
+import connection from "./src/utils/connection";
+import immigrationRoutes from "./src/routes/immigrationRoutes";
+import userRouter from "./src/routes/routes";
+var cors = require("cors");
+const bodyParser = require("body-parser");
 const router: Express = express();
 
+const allowedOrigins = ["https://edfry.co"];
+
+const corsOptions = {
+  origin: function (
+    origin: string | undefined,
+    callback: (error: Error | null, allow: boolean) => void
+  ) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"), false);
+    }
+  },
+};
 dotenv.config();
 
-router.use(cors())
-router.use(bodyParser())
-router.use(express.urlencoded({extended: false}));
+router.use(cors(corsOptions));
+router.use(bodyParser());
+router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
-router.use('/' , userRouter)
+router.use("/", userRouter);
 // router.use((req, res, next) => {
 //     // set the CORS policy
 //     res.header('Access-Control-Allow-Origin', '*');
@@ -95,21 +108,19 @@ router.use('/' , userRouter)
 // });
 
 router.use((req, res, next) => {
-    const error = new Error('not found');
-    return res.status(404).json({
-        message: error.message
-    });
+  const error = new Error("not found");
+  return res.status(404).json({
+    message: error.message,
+  });
 });
 
 const PORT: any = process.env.PORT ?? 5000;
-connection.then((data) => {
+connection
+  .then((data) => {
     router.listen(PORT, () => {
-        console.log(`The server is running on port ${PORT}`)
-    })
-
-}).catch((error) => {
-    console.log(error.message)
-})
-
-
- 
+      console.log(`The server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
