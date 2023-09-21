@@ -73,23 +73,9 @@ var cors = require("cors");
 const bodyParser = require("body-parser");
 const router: Express = express();
 
-const allowedOrigins = ["https://edfry.co"];
-
-const corsOptions = {
-  origin: function (
-    origin: string | undefined,
-    callback: (error: Error | null, allow: boolean) => void
-  ) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"), false);
-    }
-  },
-};
 dotenv.config();
 
-router.use(cors(corsOptions));
+router.use(cors({ origin: "https://edfry.co" }));
 router.use(bodyParser());
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
