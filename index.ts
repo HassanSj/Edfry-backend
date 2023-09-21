@@ -65,9 +65,6 @@
 // // });
 // startServer()
 
-
-
-import http from 'http';
 import express, {Express} from 'express';
 import dotenv from 'dotenv';
 import connection from './src/utils/connection';
