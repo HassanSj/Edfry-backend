@@ -75,7 +75,7 @@ const router: Express = express();
 
 dotenv.config();
 
-router.use(cors({ origin: "https://edfry.co" }));
+router.use(cors());
 router.use(bodyParser());
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
