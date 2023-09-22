@@ -31,9 +31,9 @@ export default {
       return res
         .status(201)
         .json({ message: "User admission saved", user: savedUser });
-    } catch (error) {
+    } catch (error:any) {
       console.error("Error getting response:", error);
-      return RequestResponseMappings.sendErrorMessage(res);
+      return RequestResponseMappings.sendErrorMessage(res,error.message.toString());
       //   return res.status(500).json({ message: 'Internal server error' });
     }
   },
