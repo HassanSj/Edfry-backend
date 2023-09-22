@@ -16,6 +16,13 @@ export default {
         country,
         program,
       } = req.body;
+      console.log('Received data from client:', req.body);
+
+      // Check if 'name' is missing or null
+      if (!name) {
+        return res.status(400).json({ message: "Name is required." });
+      }
+
       const userRepository = getRepository(Admission);
       const newUser = new Admission();
       newUser.name = name;
