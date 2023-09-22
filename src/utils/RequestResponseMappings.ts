@@ -11,7 +11,7 @@ export default {
     },
     sendErrorMessage: (
         res: Response,
-        description = {},
+        description ="",
         message: string = "Action could not be performed",
         status: number = 500
     ) => {
