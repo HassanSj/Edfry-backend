@@ -11,6 +11,6 @@ const userRouter: Express = express();
 // userRouter.post('/login', UserController.loginUser)
 userRouter.use('/api/immigration',immigrationRoutes);
 userRouter.use('/api/admission',admissionRoutes);
-// userRouter.use('/api/user', userRoutes)
+userRouter.use('/api/user', userRoutes)
 
 export default userRouter;

@@ -80,18 +80,24 @@ router.use(bodyParser());
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 router.use("/", userRouter);
-// router.use((req, res, next) => {
-//     // set the CORS policy
-//     res.header('Access-Control-Allow-Origin', '*');
-//     // set the CORS headers
-//     res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
-//     // set the CORS method headers
-//     if (req.method === 'OPTIONS') {
-//         res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST');
-//         return res.status(200).json({});
-//     }
-//     next();
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://edfry.co');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
 // });
+router.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+   
+    // if (req.method === 'OPTIONS') {
+    //     res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST');
+    //     return res.status(200).json({});
+    // }
+    // next();
+});
 
 router.use((req, res, next) => {
   const error = new Error("not found");
