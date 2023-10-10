@@ -11,13 +11,19 @@ class User extends BaseEntity {
   name: string;
 
   @Column()
+  password: string;
+
+  @Column()
   email: string;
 
   @Column()
   contact: string;
 
+  // @Column()
+  // otp : number;
+
   @Column()
-  otp : number;
+  userType : string;
 
   }
 export default User;
